@@ -1,7 +1,13 @@
-from django.conf.urls import url, include
+from django.urls import include, path
+from rest_framework import routers
 
-from . import views
+from endpoint import views as endpoint_views
+
+router = routers.SimpleRouter()
+router.register('url', endpoint_views.UrlViewSet)
 
 urlpatterns = [
-    url(r'^create/',views.CreateUrlView.as_view(), name='create_url'),
+    path('test/<slug:url>/',endpoint_views.EndPointDetailView.as_view(), name='post-data'),
 ]
+
+urlpatterns += router.urls
