@@ -13,7 +13,8 @@ class UrlSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = endpoint_models.Url
-        fields = ['url', 'time_left_before_expiry']
+        fields = ['url', 'time_left_before_expiry', 'no_of_hits']
+        read_only_fields = ['no_of_hits', 'url']
     
     def get_time_left_before_expiry(self, instance):
         """
@@ -42,4 +43,6 @@ class EndPointDetailSerializer(serializers.ModelSerializer):
             obj.headers = self.context.get('headers')
             obj.query_params = self.context.get('query_params')
             obj.save()
+            url.no_of_hits += 1
+            url.save(update_fields=['no_of_hits'])
             return obj

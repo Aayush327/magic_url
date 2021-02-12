@@ -16,11 +16,6 @@ class UrlViewSet(ModelViewSet):
     queryset = endpoint_models.Url.objects.all().order_by('-created_at')
     serializer_class = endpoint_serializers.UrlSerializer
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     instance = 
-    #     serializer = self.get_serializer(instance)
-    #     return Response(serializer.data)
-
     def list(self, request, *args, **kwargs):
         endpoint_utils.update_expiry_of_urls()
         queryset = self.queryset.filter(is_expired=False)
