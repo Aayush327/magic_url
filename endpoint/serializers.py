@@ -23,12 +23,12 @@ class UrlSerializer(serializers.ModelSerializer):
         """
         Function to calculate time left before expiry of the url
         :param instance: Url model instance
-        return: Time left in seconds
+        return: Time left in minutes
         """
         return (
-            endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (
+            int(endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (
                 timezone.now() - instance.created_at
-            ).total_seconds()
+            ).total_seconds())/60
         )
 
 
