@@ -134,3 +134,10 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = DEBUG
 
 FE_BASE_URL = "http://localhost:5200/#!"
+
+# import dj_database_url 
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
