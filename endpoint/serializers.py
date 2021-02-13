@@ -25,11 +25,9 @@ class UrlSerializer(serializers.ModelSerializer):
         :param instance: Url model instance
         return: Time left in minutes
         """
-        return (
-            int(endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (
-                timezone.now() - instance.created_at
-            ).total_seconds())/60
-        )
+        expiry_seconds = endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (timezone.now() - instance.created_at).total_seconds()
+        return int(expiry_seconds/60)
+        
 
 
 class EndPointDetailSerializer(serializers.ModelSerializer):
