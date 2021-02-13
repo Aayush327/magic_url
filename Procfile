@@ -1,0 +1,1 @@
+web: gunicorn magic_url.wsgi --log-file -
