@@ -51,5 +51,5 @@ class EndPointDetailView(generics.CreateAPIView, generics.ListAPIView):
         serializer = self.get_serializer(queryset, many=True)
         return Response({
             "endpoint_detail_list": serializer.data
-        )
+        })
 
