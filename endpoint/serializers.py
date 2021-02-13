@@ -9,6 +9,9 @@ from endpoint import models as endpoint_models
 
 
 class UrlSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Url Model
+    """
     time_left_before_expiry = serializers.SerializerMethodField()
 
     class Meta:
@@ -18,6 +21,9 @@ class UrlSerializer(serializers.ModelSerializer):
     
     def get_time_left_before_expiry(self, instance):
         """
+        Function to calculate time left before expiry of the url
+        :param instance: Url model instance
+        return: Time left in seconds
         """
         return (
             endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (
@@ -27,6 +33,9 @@ class UrlSerializer(serializers.ModelSerializer):
 
 
 class EndPointDetailSerializer(serializers.ModelSerializer):
+    """
+    Serializer for EndPointDetail Model
+    """
     class Meta:
         model = endpoint_models.EndPointDetail
         fields = ['raw_body', 'headers', 'query_params']

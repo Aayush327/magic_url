@@ -20,7 +20,9 @@ class UrlViewSet(ModelViewSet):
         endpoint_utils.update_expiry_of_urls()
         queryset = self.queryset.filter(is_expired=False)
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response({
+            "url_list":serializer.data
+        })
         
 
 class EndPointDetailView(generics.CreateAPIView, generics.ListAPIView):
@@ -47,5 +49,7 @@ class EndPointDetailView(generics.CreateAPIView, generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         queryset = self.queryset.filter(url__url=kwargs.get('url'))[:4]
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response({
+            "endpoint_detail_list": serializer.data
+        })
 

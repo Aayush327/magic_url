@@ -9,7 +9,7 @@ from endpoint import (
 
 def update_expiry_of_urls():
     """
-    
+    Util to update is_expired of the urls if there expired time is completed.
     """
     endpoint_models.Url.objects.filter(
         created_at__lte=timezone.now() - timedelta(seconds=endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS)

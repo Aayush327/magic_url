@@ -9,6 +9,7 @@ from endpoint import constants
 
 class TimeModel(models.Model):
     """
+    Abstract Model for saving time instances.
     """
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -19,6 +20,7 @@ class TimeModel(models.Model):
 
 class Url(TimeModel, models.Model):
     """
+    Url Model to save the details related to urls.
     """
     url = models.CharField(max_length=100, unique=True)
     is_expired = models.BooleanField(default=False)
@@ -31,15 +33,13 @@ class Url(TimeModel, models.Model):
     def generate_url(self):
         return uuid.uuid4()
 
-    def check_expiry(self):
-        return timezone.now() - self.created_at > timedelta(days=constants.URL_EXPIRY_TIME_IN_SECONDS)
-
     def __str__(self):
         return self.url
 
 
 class EndPointDetail(TimeModel, models.Model):
     """
+    EndPoint url for saving data of the parameters and body passed in the url.
     """
     url = models.ForeignKey(Url, on_delete=models.CASCADE)
     headers = models.TextField()
