@@ -35,7 +35,7 @@ Create a superuser:
     `python manage.py createsuperuser`
 
 Run server:
-    `python manage.py runserver`
+    `python manage.py runserver 8000`
 
 Deactivate the virtual environment:
     `deactivate`

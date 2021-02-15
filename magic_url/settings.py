@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = DEBUG
 
-FE_BASE_URL = "http://localhost:5200/#!"
+FE_BASE_URL = "http://localhost:8080/#!"
 
 # import dj_database_url 
 # prod_db  =  dj_database_url.config(conn_max_age=500)
