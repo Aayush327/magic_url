@@ -1,5 +1,13 @@
 # Magic Url
 
+Backend is live at 	`http://magic-url-api.herokuapp.com/`
+
+# Get/Post/List urls
+Urls: `	http://magic-url-api.herokuapp.com/endpoints/url`
+
+# Get details of url
+Urls: `http://magic-url-api.herokuapp.com/endpoints/test/<url>`
+
 Run following commands:
     install python3.6
     install pip3:

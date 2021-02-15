@@ -34,10 +34,30 @@ class EndPointDetailSerializer(serializers.ModelSerializer):
     """
     Serializer for EndPointDetail Model
     """
+    time_left_before_expiry = serializers.SerializerMethodField()
+    time_after_hitting_url = serializers.SerializerMethodField()
+
     class Meta:
         model = endpoint_models.EndPointDetail
-        fields = ['raw_body', 'headers', 'query_params']
-        read_only_fields = ['headers', 'query_params']
+        fields = ['raw_body', 'headers', 'query_params', 'time_after_hitting_url', 'time_left_before_expiry']
+        read_only_fields = ['headers', 'query_params', ]
+
+    def get_time_left_before_expiry(self, instance):
+        """
+        Function to calculate time left before expiry of the url
+        :param instance: Url model instance
+        return: Time left in minutes
+        """
+        expiry_seconds = endpoint_constants.URL_EXPIRY_TIME_IN_SECONDS - (timezone.now() - instance.url.created_at).total_seconds()
+        return int(expiry_seconds/60)
+
+    def get_time_after_hitting_url(self, instance):
+        """
+        Function to calculate time left after hitting url
+        :param instance: Url model instance
+        return: Time passed in seconds
+        """
+        return int((timezone.now() - instance.created_at).total_seconds())
 
     def create(self, validated_data):
         try:
