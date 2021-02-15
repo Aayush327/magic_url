@@ -21,7 +21,7 @@ Clone the project from the github:
     git clone https://github.com/Aayush327/magic_url.git
 
 
-Install requirement by `pip install -r requirement.txt`
+Install requirement by `pip install -r requirements.txt`
 Install RabbitMQ by `sudo apt-get install rabbitmq-server`
 
 Check if RabbitMQ server running by `sudo service rabbitmq-server status`, if its not run server by running `sudo service rabbitmq-server start`
