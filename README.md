@@ -12,8 +12,8 @@ Run following commands:
     install python3.6
     install pip3:
 
-install virtualenvwrapper
-mkvirtualenv <env-name>
+`pip install virtualenvwrapper`
+`mkvirtualenv <env-name>`
 Activate the virtual environment:
     workon <env-name>
 
@@ -21,7 +21,7 @@ Clone the project from the github:
     git clone https://github.com/Aayush327/magic_url.git
 
 
-Install requirement by `pip3 install -r requirement.txt`
+Install requirement by `pip install -r requirement.txt`
 Install RabbitMQ by `sudo apt-get install rabbitmq-server`
 
 Check if RabbitMQ server running by `sudo service rabbitmq-server status`, if its not run server by running `sudo service rabbitmq-server start`
@@ -39,3 +39,7 @@ Run server:
 
 Deactivate the virtual environment:
     `deactivate`
+
+# Urls:
+1 - `/endpoints/url`
+2 - `endpoints/test/<url>`
